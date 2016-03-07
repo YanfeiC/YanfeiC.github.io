@@ -218,15 +218,6 @@
 
     
     
-      
-      
-        
-        
-        
-      
-
-      
-    
 
     
       
@@ -317,32 +308,15 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>版权声明：本文为博主原创文章，未经博主允许不得转载。如有错误，欢迎指正。</p>
 </blockquote>
-<p> 搜索php高阶函数，网上都是举例call_user_func()的用法，其实还有其他很方便的方法。最近SICP看到了高阶函数，想用PHP实现LISP的高阶函数，发现真的可以哦，就是运用PHP的可变函数。</p>
-<p>高阶函数维基百科定义是</p>
-<blockquote>
-<p>高阶函数是至少满足下列一个条件的函数：</p>
-<ul>
-<li>接受一个或多个函数作为输入</li>
-<li>输出一个函数</li>
-</ul>
-</blockquote>
-<p>SICP1.3节给了一个高阶函数的例子。<br><img src="/images/sicp1.3.gif" alt=""><br>通过scheme代码表述求和的概念，代码如下：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">define</span> <span class="list">(<span class="keyword">cube</span> x)</span> <span class="list">(<span class="keyword">*</span> x x x)</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">define</span> <span class="list">(<span class="keyword">sum</span> term a next b)</span></span><br><span class="line">  <span class="list">(<span class="keyword">if</span> <span class="list">(<span class="keyword">&gt;</span> a b)</span></span><br><span class="line">      <span class="number">0</span></span><br><span class="line">      <span class="list">(<span class="keyword">+</span> <span class="list">(<span class="keyword">term</span> a)</span></span><br><span class="line">         <span class="list">(<span class="keyword">sum</span> term <span class="list">(<span class="keyword">next</span> a)</span> next b)</span>)</span>)</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">define</span> <span class="list">(<span class="keyword">inc</span> n)</span> <span class="list">(<span class="keyword">+</span> n <span class="number">1</span>)</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">define</span> <span class="list">(<span class="keyword">sum-cubes</span> a b)</span></span><br><span class="line">    <span class="list">(<span class="keyword">sum</span> cube a inc b)</span>)</span></span><br></pre></td></tr></table></figure></p>
-<p>该代码可以计算f=x^3的求和。</p>
-<p>如果通过PHP实现如上过程的话，代码如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(<span class="variable">$term</span>,<span class="variable">$a</span>,<span class="variable">$next</span>,<span class="variable">$b</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$a</span>&gt;<span class="variable">$b</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$term</span>(<span class="variable">$a</span>) + sum(<span class="variable">$term</span>,<span class="variable">$next</span>(<span class="variable">$a</span>),<span class="variable">$next</span>,<span class="variable">$b</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inc</span><span class="params">(<span class="variable">$n</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$n</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cube</span><span class="params">(<span class="variable">$x</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$x</span>*<span class="variable">$x</span>*<span class="variable">$x</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum_cubes</span><span class="params">(<span class="variable">$a</span>,<span class="variable">$b</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sum(<span class="string">'cube'</span>,<span class="variable">$a</span>,<span class="string">'inc'</span>,<span class="variable">$b</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>代码很简单，主要就是注意sum_cubes函数返回的sum函数的参数。可以发现cube和inc加上了引号，作为字符串输入。你可能会疑问为什么函数名需要通过字符串传进去呢，难道不能直接传入函数名么？<br>我们可以思考一下，php函数的参数只会有四种情况，<br>1.数字<br>2.变量<br>3.常量<br>4.字符串</p>
-<p>首先我们要传入的函数名肯定不是数字，那第二种情况变量方法传入参数呢，像这样</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum_cubes</span><span class="params">(<span class="variable">$a</span>,<span class="variable">$b</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sum(<span class="variable">$cube</span>,<span class="variable">$a</span>,<span class="variable">$inc</span>,<span class="variable">$b</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//PHP Notice:  Undefined variable: cube in Command line code on line 15</span></span><br><span class="line"><span class="comment">//PHP Notice:  Undefined variable: inc in Command line code on line 15</span></span><br><span class="line"><span class="comment">//PHP Fatal error:  Function name must be a string in Command line code on line 5</span></span><br></pre></td></tr></table></figure>
-<p>可以发现我们定义了cube和inc函数，但是传入$cube和$inc，php会提示未定义的变量，很明显对于php来说变量名和函数名不是一个概念。</p>
-<p>那第三种呢，一开始我就是这样写的，我太天真了Orz…<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> sum(cube,<span class="variable">$a</span>,inc,<span class="variable">$b</span>);</span><br><span class="line"><span class="comment">//PHP Notice:  Use of undefined constant cube</span></span><br></pre></td></tr></table></figure></p>
-<p>如果这样的话，程序真的会正常运行，但会提示未定义的常量cube和inc,显然php把cube和inc当成了常量，找啊找没找到，它居然就直接把cube和inc当字符串传给sum函数了，然后居然就成功了。php对错误的处理太牛了- -！</p>
-<p>看来只有用第四种方法字符串就是它了，将函数名当做字符串来传入。对此官方文档还有详细的解释，这种将自己的函数名当做字符串来作为函数参数输入的函数的就叫<a href="http://php.net/manual/zh/functions.variable-functions.php" target="_blank" rel="external">可变函数</a>。</p>
-<p>有了可变函数，我们可以方便的把函数方便的当做另一个函数的参数传入，从而可以轻松的构建高阶函数。</p>
-
-          
+<p> 搜索php高阶函数，网上都是举例call_user_func()的用法，其实还有其他很方便的方法。最近SICP看到了高阶函数，想用PHP实现LISP的高阶函数，发现真的可以哦，就是运用PHP的可变函数。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/07/PHP高阶函数-可变函数的使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
