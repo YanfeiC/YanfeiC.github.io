@@ -59,21 +59,21 @@
 
 <meta name="description" content="版权声明：本文为博主原创文章，未经博主允许不得转载。如有错误，欢迎指正。
 
- 搜索php高阶函数，网上都是举例call_user_func()的用法，其实还有其他很方便的方法。最近SICP看到了高阶函数，想用PHP实现LISP的高阶函数，发现真的可以哦，就是运用PHP的可变函数。">
+ 搜索php高阶函数，网上都是举例call_user_func()的用法，其实还有其他很实用的方法。最近SICP看到了高阶函数，想用PHP实现LISP的高阶函数，发现真的可以哦，就是运用PHP的可变函数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP高阶函数（可变函数的使用）">
 <meta property="og:url" content="http://yoursite.com/2016/03/07/PHP高阶函数-可变函数的使用/index.html">
 <meta property="og:site_name" content="ShadowC">
 <meta property="og:description" content="版权声明：本文为博主原创文章，未经博主允许不得转载。如有错误，欢迎指正。
 
- 搜索php高阶函数，网上都是举例call_user_func()的用法，其实还有其他很方便的方法。最近SICP看到了高阶函数，想用PHP实现LISP的高阶函数，发现真的可以哦，就是运用PHP的可变函数。">
+ 搜索php高阶函数，网上都是举例call_user_func()的用法，其实还有其他很实用的方法。最近SICP看到了高阶函数，想用PHP实现LISP的高阶函数，发现真的可以哦，就是运用PHP的可变函数。">
 <meta property="og:image" content="http://yoursite.com/images/sicp1.3.gif">
-<meta property="og:updated_time" content="2016-03-07T12:40:32.000Z">
+<meta property="og:updated_time" content="2016-03-07T12:57:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP高阶函数（可变函数的使用）">
 <meta name="twitter:description" content="版权声明：本文为博主原创文章，未经博主允许不得转载。如有错误，欢迎指正。
 
- 搜索php高阶函数，网上都是举例call_user_func()的用法，其实还有其他很方便的方法。最近SICP看到了高阶函数，想用PHP实现LISP的高阶函数，发现真的可以哦，就是运用PHP的可变函数。">
+ 搜索php高阶函数，网上都是举例call_user_func()的用法，其实还有其他很实用的方法。最近SICP看到了高阶函数，想用PHP实现LISP的高阶函数，发现真的可以哦，就是运用PHP的可变函数。">
 
 
 
@@ -307,7 +307,7 @@
         <blockquote>
 <p>版权声明：本文为博主原创文章，未经博主允许不得转载。如有错误，欢迎指正。</p>
 </blockquote>
-<p> 搜索php高阶函数，网上都是举例call_user_func()的用法，其实还有其他很方便的方法。最近SICP看到了高阶函数，想用PHP实现LISP的高阶函数，发现真的可以哦，就是运用PHP的可变函数。<br><a id="more"></a><br>高阶函数维基百科定义是</p>
+<p> 搜索php高阶函数，网上都是举例call_user_func()的用法，其实还有其他很实用的方法。最近SICP看到了高阶函数，想用PHP实现LISP的高阶函数，发现真的可以哦，就是运用PHP的可变函数。<br><a id="more"></a><br>高阶函数维基百科定义是</p>
 <blockquote>
 <p>高阶函数是至少满足下列一个条件的函数：</p>
 <ul>
@@ -325,7 +325,7 @@
 <p>那第三种呢，一开始我就是这样写的，我太天真了Orz…<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> sum(cube,<span class="variable">$a</span>,inc,<span class="variable">$b</span>);</span><br><span class="line"><span class="comment">//PHP Notice:  Use of undefined constant cube</span></span><br></pre></td></tr></table></figure></p>
 <p>如果这样的话，程序真的会正常运行，但会提示未定义的常量cube和inc,显然php把cube和inc当成了常量，找啊找没找到，它居然就直接把cube和inc当字符串传给sum函数了，然后居然就成功了。php对错误的处理太牛了- -！</p>
 <p>看来只有用第四种方法字符串就是它了，将函数名当做字符串来传入。对此官方文档还有详细的解释，这种将自己的函数名当做字符串来作为函数参数输入的函数的就叫<a href="http://php.net/manual/zh/functions.variable-functions.php" target="_blank" rel="external">可变函数</a>。</p>
-<p>有了可变函数，我们可以方便的把函数方便的当做另一个函数的参数传入，从而可以轻松的构建高阶函数。</p>
+<p>有了可变函数，我们可以方便的把函数当做另一个函数的参数传入，从而可以轻松的构建高阶函数。</p>
 
       
     </div>
