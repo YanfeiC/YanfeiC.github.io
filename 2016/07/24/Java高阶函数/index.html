@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="优先数系,读书笔记," />
+  <meta name="keywords" content="Java,lanbda,高阶函数," />
 
 
 
@@ -57,16 +57,16 @@
 
 
 
-<meta name="description" content="你可知道粗糙度为什么是0.8, 1.6, 3.2, 6.3, 12.5?你可知道油缸缸径为什么是63, 80, 100, 125?你可知道油缸压力为什么是6.3, 16, 25, 31.5?你可知道螺纹规格为什么是6, 8, 10, 12, 14, 16?你可知道机械设计手册上无数的表格，所有产品样本上的参数表，都是怎么来的?一切都来源于伟大的优先数系。法国工程师雷诺看到热气球上的钢丝绳规格繁多，">
+<meta name="description" content="学了Java的lambda的表达式，赶快把上一个高阶函数的例子翻译下^_^">
 <meta property="og:type" content="article">
-<meta property="og:title" content="优先数系的由来">
-<meta property="og:url" content="http://yoursite.com/2016/05/04/优先数系的由来/index.html">
+<meta property="og:title" content="Java高阶函数">
+<meta property="og:url" content="http://yoursite.com/2016/07/24/Java高阶函数/index.html">
 <meta property="og:site_name" content="ShadowC">
-<meta property="og:description" content="你可知道粗糙度为什么是0.8, 1.6, 3.2, 6.3, 12.5?你可知道油缸缸径为什么是63, 80, 100, 125?你可知道油缸压力为什么是6.3, 16, 25, 31.5?你可知道螺纹规格为什么是6, 8, 10, 12, 14, 16?你可知道机械设计手册上无数的表格，所有产品样本上的参数表，都是怎么来的?一切都来源于伟大的优先数系。法国工程师雷诺看到热气球上的钢丝绳规格繁多，">
-<meta property="og:updated_time" content="2016-05-04T10:46:19.000Z">
+<meta property="og:description" content="学了Java的lambda的表达式，赶快把上一个高阶函数的例子翻译下^_^">
+<meta property="og:updated_time" content="2016-07-24T08:13:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="优先数系的由来">
-<meta name="twitter:description" content="你可知道粗糙度为什么是0.8, 1.6, 3.2, 6.3, 12.5?你可知道油缸缸径为什么是63, 80, 100, 125?你可知道油缸压力为什么是6.3, 16, 25, 31.5?你可知道螺纹规格为什么是6, 8, 10, 12, 14, 16?你可知道机械设计手册上无数的表格，所有产品样本上的参数表，都是怎么来的?一切都来源于伟大的优先数系。法国工程师雷诺看到热气球上的钢丝绳规格繁多，">
+<meta name="twitter:title" content="Java高阶函数">
+<meta name="twitter:description" content="学了Java的lambda的表达式，赶快把上一个高阶函数的例子翻译下^_^">
 
 
 
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title> 优先数系的由来 | ShadowC </title>
+  <title> Java高阶函数 | ShadowC </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -223,7 +223,7 @@
             
             
               
-                优先数系的由来
+                Java高阶函数
               
             
           </h1>
@@ -235,8 +235,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-04T20:00:00+08:00" content="2016-05-04">
-              2016-05-04
+            <time itemprop="dateCreated" datetime="2016-07-24T20:00:00+08:00" content="2016-07-24">
+              2016-07-24
             </time>
           </span>
 
@@ -249,8 +249,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机械设计/" itemprop="url" rel="index">
-                    <span itemprop="name">机械设计</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -265,8 +265,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/04/优先数系的由来/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/04/优先数系的由来/" itemprop="commentsCount"></span>
+                <a href="/2016/07/24/Java高阶函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/Java高阶函数/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -287,7 +287,12 @@
       
 
       
-        <p>你可知道粗糙度为什么是0.8, 1.6, 3.2, 6.3, 12.5?<br>你可知道油缸缸径为什么是63, 80, 100, 125?<br>你可知道油缸压力为什么是6.3, 16, 25, 31.5?<br>你可知道螺纹规格为什么是6, 8, 10, 12, 14, 16?<br>你可知道机械设计手册上无数的表格，所有产品样本上的参数表，都是怎么来的?<br>一切都来源于伟大的优先数系。<br>法国工程师雷诺看到热气球上的钢丝绳规格繁多，他就想了一个办法，将10开5次方，得到一个<br>数1.6，然后辗转相乘，得出5个优先数如下:<br>1.0<br>1.6<br>2.5<br>4.0<br>6.3<br>这是一个等比数列，后数为前数的1.6倍，那么10以下的钢丝绳一下子只有5种，10到100的钢丝<br>绳也只有5种，即10, 16, 25, 40, 63。<br>但是这样分法太稀疏，雷先生就再接再厉，将10开10次方，得出R10优先数系如下：<br>1.0<br>1.25<br>1.6<br>2.0<br>2.5<br>3.15<br>4.0<br>5.0<br>6.3<br>8.0<br>公比为1.25，于是10以内的钢丝绳只有10种，10到100的也只有10种，这就比较合理了。这时<br>肯定有人说，这个数列，前面的数字好像相差不大，如1.0和1.25，简直没差别嘛，平常我就四<br>舍五入了，但6.3和8.0间隔就大了，这样合理吗？<br>合理不合理，我们打个比方。比如说自然数1、2、3、4、5、6、7、8、9，看起来很顺溜，我们<br>用这个数列来发工资，给张三发1000，给李四发2000，两人皆心服。突然通货膨胀，给张三发<br>8000，给李四发9000。以前李四工资是张三的2倍，现在变成1.12倍。你说李四能愿意吗？他<br>可是主管哪，给他发16000还差不多，张三是不会埋怨说主管比他多8000的。<br>这个自然界的事物，有两种比较方法，就是“相对”与“绝对”！优先数系是相对的。<br>有人说他的产品规格有10吨，20吨，30吨，40吨的，现在看来就不合理了吧？如果你取两倍的<br>话，应该是10吨，20吨，40吨，80吨，或者保住头尾，也应该是10吨，16吨，25吨，40吨，<br>公比为1.6才合理。<br>这就是“标准化”，论坛上常常看到有人说“标准化”，实际他们说的是“标准件”，所做的<br>工作只是将整机的标准件整理一下，就叫标准化了，实际不是这样的。真正的标准化，你要把<br>你的产品的所有参数按优先数系形成序列化，再把所有的零部件的功能参数及尺寸，用优先数<br>系来序列化才对。<br>自然数是无穷的，但在机械设计师眼里，世界上只有10个数，它就是R10优先数。并且，这10个<br>数相乘，相除，乘方，开方，结果还在这10个数里，何其奇妙！当你设计的时候，不知道尺寸<br>该选择多大为好时，就在这10个数里选，你说何其方便！<br>1.0 N0<br>1.12 N2<br>1.25 N4<br>1.4 N6<br>1.6 N8<br>1.8 N10<br>2.0 N12<br>2.24 N14<br>2.5 N16<br>2.8 N18<br>3.15 N20<br>3.55 N22<br>4.0 N24<br>4.5 N26<br>5.0 N28<br>5.6 N30<br>6.3 N32<br>7.1 N34<br>8.0 N36<br>9.0 N38<br>两个优先数，比如4和2，其序号分别为N24和N12，它们相乘，将其序号相加，其结果等于N36<br>即8便是；相除，序号相减，等于N12即2便是；2的立方，将其序号N12乘以3得N36即8便是；4<br>的开方，将其序号N24除以2得N12即2便是<br>如果求2的四次方呢？N12<em>4=N48，这里没有，怎么办？上面的列表，没有写上一个数，就是<br>10，它的序号是N40，凡是序号大于40的，只看大于40的部分，比如N48就看N8，即1.6，然后<br>乘以10得16就对了。如果序号是N88呢，看N8得1.6，然后乘以100得160便是，因为100的序<br>号是N80,1000的序号是N120，依此类推<br>做机械设计，一辈子用这20个数就足矣。但有时需用到R40数系，有40个数，就更完善了，若不<br>够，还有R80系。我已将R40数系倒背如流，应付一般计算根本不用计算器。简单来说算40径的<br>45钢的抗扭能力，其扭转系数是0.5</em>π<em>R^3，扭应力选屈服点360的一半即180MPa，圆周率选<br>3.15，左右手捏小数点，心算加减序号，一会就出来。有人说你不加安全系数吗？说吧，是取<br>1.25，还是1.5，还是2啊？呵呵。<br>黄金分割0.618，也即1.618，这里也有1.6。<br>平方根数列，就是根号1，根号2，根号3，很容易求出吧？（3的序号是N19）<br>π的平方等于多少？等于10。你算压杆稳定的时候就方便了吧？<br>圆杆扭转系数约为0.1</em>D^3，现在你可以口算扭转系数了吧？<br>为什么大螺丝从M36直接跳到M40？<br>为什么齿轮的传动比有个6.3或者7.1？<br>为什么槽钢有个市场上很少见的12.6号？<br>为什么外协厂打电话来说140的方管没有，而有120和160的？因为R5数系比R20数系优先。<br>为什么标准件的参数有个第一序列，第二序列？一般来说第一序列就是R5序列。<br>为什么Inventor的螺孔列表有个M11.2？现在你知道它不是胡诌出来的数吧？<br>还有钢板厚度，型钢型号，齿轮模数，一切标准件，一切工业品样本上的功能参数，尺寸参数，<br>标准公差表，等等等等，它们的来源，此刻在我们的心中慢慢清晰起来。可以说，我们已经理解<br>了半部机械设计手册，以及那些还没做出来的工业品。<br>那么，我们在设计产品的时候，就可以同时设计出一系列了，而不是设计完之后再进行所谓的<br>“标准化”；更进一步，如果产品注定要序列化，那么我们甚至可以在对实际工况不甚了解的情<br>况下设计产品，因为优先数系已将所有型号包括其中了。<br>优先数系的应用，上面列出的，可谓沧海一粟，无尽的应用等着我们自己去开发。<br>背诵优先数系吧，这可是一劳永逸的活儿。</p>
+        <p>学了Java的lambda的表达式，赶快把上一个高阶函数的例子翻译下^_^</p>
+<a id="more"></a>
+<p>首先我们要声明一个函数接口，就叫Function吧</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Function</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">opera</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后主代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">lambdaJava</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    Function cube = x -&gt; x * x * x; <span class="comment">//定义term函数</span></span><br><span class="line">    </span><br><span class="line">    Function inc = x -&gt; x + <span class="number">1</span>; <span class="comment">//定义next函数</span></span><br><span class="line"></span><br><span class="line">    System.out.println(sum(cube,<span class="number">1</span>,inc,<span class="number">5</span>));  <span class="comment">//225</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(Function term, <span class="keyword">int</span> a, Function next, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> term.opera(a) + sum(term, next.opera(a), next, b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -296,9 +301,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/优先数系/" rel="tag">#优先数系</a>
+            <a href="/tags/Java/" rel="tag">#Java</a>
           
-            <a href="/tags/读书笔记/" rel="tag">#读书笔记</a>
+            <a href="/tags/lanbda/" rel="tag">#lanbda</a>
+          
+            <a href="/tags/高阶函数/" rel="tag">#高阶函数</a>
           
         </div>
       
@@ -314,10 +321,6 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/05/index/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -343,8 +346,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/04/优先数系的由来/"
-           data-title="优先数系的由来" data-url="http://yoursite.com/2016/05/04/优先数系的由来/">
+      <div class="ds-thread" data-thread-key="2016/07/24/Java高阶函数/"
+           data-title="Java高阶函数" data-url="http://yoursite.com/2016/07/24/Java高阶函数/">
       </div>
     
   </div>
@@ -389,7 +392,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -403,7 +406,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
