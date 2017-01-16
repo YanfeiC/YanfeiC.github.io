@@ -1,0 +1,851 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JDBC,Java,Spring," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Spring’s JDBCTemplate1. JdbcTemplate的初始化需要使用datasource.可以在spring中定义一个datasource的bean.
+&amp;lt;bean id=&amp;quot;mySqlDataSource&amp;quot; class=&amp;quot;org.apache.commons.dbcp.BasicDataSource&amp;quot;&amp;gt;
+&amp;lt;property">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringDataAccess读书笔记">
+<meta property="og:url" content="http://yoursite.com/2016/10/30/SpringDataAccess读书笔记/index.html">
+<meta property="og:site_name" content="ShadowC">
+<meta property="og:description" content="Spring’s JDBCTemplate1. JdbcTemplate的初始化需要使用datasource.可以在spring中定义一个datasource的bean.
+&amp;lt;bean id=&amp;quot;mySqlDataSource&amp;quot; class=&amp;quot;org.apache.commons.dbcp.BasicDataSource&amp;quot;&amp;gt;
+&amp;lt;property">
+<meta property="og:updated_time" content="2016-10-30T13:17:49.674Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringDataAccess读书笔记">
+<meta name="twitter:description" content="Spring’s JDBCTemplate1. JdbcTemplate的初始化需要使用datasource.可以在spring中定义一个datasource的bean.
+&amp;lt;bean id=&amp;quot;mySqlDataSource&amp;quot; class=&amp;quot;org.apache.commons.dbcp.BasicDataSource&amp;quot;&amp;gt;
+&amp;lt;property">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> SpringDataAccess读书笔记 | ShadowC </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73740745-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">ShadowC</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SpringDataAccess读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-30T20:00:00+08:00" content="2016-10-30">
+              2016-10-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/30/SpringDataAccess读书笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/30/SpringDataAccess读书笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Spring’s-JDBCTemplate"><a href="#Spring’s-JDBCTemplate" class="headerlink" title="Spring’s JDBCTemplate"></a>Spring’s JDBCTemplate<a id="sec-1" name="sec-1"></a></h1><h2 id="1-JdbcTemplate的初始化需要使用datasource"><a href="#1-JdbcTemplate的初始化需要使用datasource" class="headerlink" title="1. JdbcTemplate的初始化需要使用datasource."></a>1. JdbcTemplate的初始化需要使用datasource.<a id="sec-1-1" name="sec-1-1"></a></h2><p>可以在spring中定义一个datasource的bean.</p>
+<pre><code>&lt;bean id=&quot;mySqlDataSource&quot; class=&quot;org.apache.commons.dbcp.BasicDataSource&quot;&gt;
+&lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
+&lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/JSDATA&quot;/&gt;
+&lt;property name=&quot;username&quot; value=&quot;jsuser&quot;/&gt;
+&lt;property name=&quot;password&quot; value=&quot;jsuser&quot;/&gt;
+&lt;/bean&gt;
+</code></pre><h2 id="2-配置JdbcTemplate"><a href="#2-配置JdbcTemplate" class="headerlink" title="2. 配置JdbcTemplate"></a>2. 配置JdbcTemplate<a id="sec-1-2" name="sec-1-2"></a></h2><a id="more"></a>
+<ol>
+<li><p>实例化一个JdbcTemplate的对象,注入上面的datasource的bean.</p>
+<p>public class JdbcTemplateTest {<br>private ApplicationContext ctx = null;<br>private JdbcTemplate template = null;<br>private DataSource datasource = null;<br>public JdbcTemplateTest() {<br>// Create a container forming the beans from datasource XML file<br>ctx = new ClassPathXmlApplicationContext(“datasources-beans.xml”);<br>// DataSource bean has been fetched from the container<br>datasource = ctx.getBean(“mySqlDataSource”,DataSource.class);<br>// Instantiate the template with the datasource<br>template = new JdbcTemplate(datasource);<br>}<br>public static void main(String[] args) {<br>JdbcTemplateTest t = new JdbcTemplateTest();<br>// execute the data access methods from here<br>….<br>}<br>}</p>
+</li>
+<li><p>还可以直接把JdbcTemplate定义为一个bean,注入到DAO中.</p>
+</li>
+</ol>
+<h2 id="3-使用JdbcTemplate"><a href="#3-使用JdbcTemplate" class="headerlink" title="3. 使用JdbcTemplate"></a>3. 使用JdbcTemplate<a id="sec-1-3" name="sec-1-3"></a></h2><p>通过使用JdbcTemplate提供的一系列方法,我们可以方便地把数据库的数据映射为Java程序中的域,比如String,int或者对象.</p>
+<h3 id="1-queryForObject-queryForList-queryForMap"><a href="#1-queryForObject-queryForList-queryForMap" class="headerlink" title="1. queryForObject, queryForList,queryForMap"></a>1. queryForObject, queryForList,queryForMap<a id="sec-1-3-1" name="sec-1-3-1"></a></h3><pre><code>template.queryForObject(&quot;select max(id) from TRADES&quot;, Integer.class);
+</code></pre><p>该函数可以把查询的数据转换为Java的数据类型,集合.</p>
+<h3 id="2-绑定查询条件中的变量"><a href="#2-绑定查询条件中的变量" class="headerlink" title="2. 绑定查询条件中的变量"></a>2. 绑定查询条件中的变量<a id="sec-1-3-2" name="sec-1-3-2"></a></h3><p>通过在查询条件中加入?(问号)占位符,在1中的函数重载加入一个Object[]数组,里面配置所需要绑定的变量即可.</p>
+<pre><code>public String getTradeStatus(int id){
+String status =
+template.queryForObject(&quot;select STATUS from TRADES where id= ?&quot;,
+new Object[]{id}, String.class);
+}
+return status;
+</code></pre><h3 id="3-RowMapper-将查询结果映射为Java本地对象"><a href="#3-RowMapper-将查询结果映射为Java本地对象" class="headerlink" title="3. RowMapper(将查询结果映射为Java本地对象)"></a>3. RowMapper(将查询结果映射为Java本地对象)<a id="sec-1-3-3" name="sec-1-3-3"></a></h3><p>为了让JdbcTemplate把查询结果映射为java本地对象,你必须告知查询结果集和本地对象的关系,通过JdbcTemplate提供的RowMapper回调可以.</p>
+<ol>
+<li><p>你可以直接继承它,并实例化后传入queryForObject函数.</p>
+<p>private static final class TradeMapper implements RowMapper<trade>{<br>@Override<br>public Trade mapRow(ResultSet rs, int rowNum) throws SQLException {<br>Trade t = new Trade();<br>// set the values by use ResultSet’s getXXX methods<br>t.setId(rs.getInt(“ID”));<br>….<br>return t;<br>}<br>}</trade></p>
+<p>public Trade getMappedTrade(int id){<br>Trade trade = template.queryForObject(“select * from TRADES where id = ?”,<br>new Object[]{id} ,<br>new TradeMapper());<br>return trade;<br>}</p>
+</li>
+<li><p>还可以使用匿名函数</p>
+<p>public Trade getTrade(int id){<br>Trade trade = template.queryForObject(“select * from TRADES where id= ?”,<br>new Object[]{id},<br>new RowMapper<trade>(){<br>@Override<br>public Trade mapRow(ResultSet rs, int row) throws SQLException {<br>Trade t = new Trade();<br>t.setId(rs.getInt(“ID”));<br>t.setAccount(rs.getString(“ACCOUNT”));<br>….<br>t.setDirection(rs.getString(“DIRECTION”));<br>return t;<br>}<br>});<br>return trade;<br>}</trade></p>
+</li>
+<li><p>使用query方法将结果集映射为多个本地对象组成的List</p>
+</li>
+</ol>
+<p>将结果集映设为由基本数据类型组成的List,可以使用queryForList(),但想把结果集映设为一个有本地对象所组成的List,需要用到query方法和RowMapper</p>
+<pre><code>public List&lt;Trade&gt; getAllMappedTrades(){
+List&lt;Trade&gt; trades =
+template.query(&quot;select * from TRADES&quot;, new TradeMapper());
+}
+return trades;
+</code></pre><h3 id="4-插入-删除-更新"><a href="#4-插入-删除-更新" class="headerlink" title="4. 插入,删除,更新"></a>4. 插入,删除,更新<a id="sec-1-3-4" name="sec-1-3-4"></a></h3><ol>
+<li>插入</li>
+</ol>
+<p>使用JdbcTemplate提供的update()方法</p>
+<pre><code>template.update(&quot;insert into TRADES values(?,?,?,?,?,?)&quot;,61,&quot;JSDATA&quot;,&quot;REV&quot;,500000,&quot;NEW&quot;,&quot;SELL&quot;);
+</code></pre><ol>
+<li><p>如果需要绑定变量,可以使用?占位符</p>
+<p>template.update(“update TRADES set status=? where id=?”,status, id);<br>template.update(“update TRADES set status=? where id=?”,new Object[]{status,id});</p>
+</li>
+<li><p>告诉JDBCTemplate绑定数据的sql类型,通过java.sql.Types</p>
+</li>
+</ol>
+<p>通过Object[]数组动态绑定的sql,如果Object里是String字符串而不是变量,需要告知 JDBCTemplate具体的sql类型</p>
+<pre><code>private void updateTradeUsingTypes() {
+int rowsUpdated = template.update(
+&quot;update TRADES set status=? where id=?&quot;,
+new Object[] { &quot;UNKNOWN&quot;,&quot;6&quot; },
+new int[] { java.sql.Types.VARCHAR,java.sql.Types.INTEGER });
+System.out.println(&quot;Rows Updated:&quot; + rowsUpdated);
+}
+</code></pre><ol>
+<li><p>还可以调用存储过程</p>
+<p>template.update(<br>“call JSDATA.REPLAY_TRADES_SP (?)”, tradeIds);<br>}</p>
+</li>
+</ol>
+<p>5.execute()<br>可以运行DDL命令,诸如创建表,删除表</p>
+<h2 id="4-NamedParameterJdbcTemplate"><a href="#4-NamedParameterJdbcTemplate" class="headerlink" title="4.NamedParameterJdbcTemplate"></a>4.NamedParameterJdbcTemplate<a id="sec-1-4" name="sec-1-4"></a></h2><p>使用 NamedParameterJdbcTemplate 可以让绑定变量的sql语句更具可读性.通过使用:name的形式绑定变量.有两种设置方法.</p>
+<ol>
+<li><p>使用变量名作为键的Map</p>
+<p>public int getTradesCount(String s, String a){<br>Map bindValues = new HashMap();<br>bindValues.put(“status”, s);<br>bindValues.put(“account”, a);<br>int numOfTrades = template.queryForInt<br>(“select count(*) from TRADES where account=:account and status=:status”,<br>bindValues);<br>System.out.println(“Number of Trades: “+numOfTrades);<br>return numOfTrades;<br>}</p>
+</li>
+<li><p>使用sqlParameterSource</p>
+</li>
+</ol>
+<p>通过该接口的addValue()方法</p>
+<pre><code>public int getTradesCountUsingSqlParameterSource(String s, String a){
+SqlParameterSource bindValues =
+new MapSqlParameterSource().addValue(&quot;status&quot;, s).addValue(&quot;account&quot;, a);
+int numOfTrades = template.queryForInt
+(&quot;select count(*) from TRADES
+where account=:account and status=:status&quot;, bindValues);
+...
+}
+</code></pre><p>还可以通过该方法绑定本地对象(JavaBean)的数据.</p>
+<pre><code>public int getTradesCountUsingBeanSqlParameterSource(Trade t){
+SqlParameterSource bindValues = new BeanPropertySqlParameterSource(t) ;
+int numOfTrades = template.queryForInt
+(&quot;select count(*) from TRADES where account=:account and status=:status&quot;,
+bindValues);
+}
+</code></pre><p>使用 NamedParameterJdbcTemplate 可以方便地使用数据绑定,但又是需要使用 JdbcTemplate 时,可以使用 NamedParameterJdbcTemplate提供的getJdbcOperation()方法.</p>
+<h2 id="5-Jdbc-Batching"><a href="#5-Jdbc-Batching" class="headerlink" title="5 Jdbc Batching"></a>5 Jdbc Batching<a id="sec-1-5" name="sec-1-5"></a></h2><p>批处理可以重用语句,访问数据库请求也大大减少.</p>
+<ol>
+<li>使用SqlParameterSourceUtils   NamedParameterJdbcTemplate使用</li>
+</ol>
+<p>SqlParameterSourceUtils会把众多对象的List转换为 SqlParameterSource的List.</p>
+<pre><code>private int[] insertTradesList(final List&lt;Trade&gt; trades) {
+SqlParameterSource[] tradesList =
+SqlParameterSourceUtils.createBatch(trades.toArray());
+int[] updatesCount = namedTemplate.batchUpdate(
+&quot;insert into TRADES values
+(:id,:account,:security,:quantity,:status,:direction)&quot;,
+tradesList);
+return updatesCount;
+}
+</code></pre><ol>
+<li><p>继承BatchPreparedStatementSetter</p>
+<p>private int[] insertTrades(final List<trade> trades) {<br>int[] updatesCount = template.batchUpdate(<br>“insert into TRADES values(?,?,?,?,?,?)”,<br>new BatchPreparedStatementSetter() {<br>@Override<br>public void setValues(PreparedStatement ps, int i) throws SQLException {<br>Trade t = trades.get(i);<br>ps.setInt(1, t.getId());<br>…<br>}<br>@Override<br>public int getBatchSize() {<br>return 10;<br>}<br>});<br>return updatesCount;<br>}</trade></p>
+</li>
+</ol>
+<p>NamedParameterJdbcTemplate由于使用:占位符加上变量名的数据绑定方法使得<br>NamedParameterJdbcTemplate可以很容易的实现批处理,而对于 JdbcTemplate<br>使用?占位符而没有提供绑定变量的信息,只能通过位置来定义绑定的数据.</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JDBC/" rel="tag">#JDBC</a>
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/Spring/" rel="tag">#Spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/24/Java高阶函数/" rel="next" title="Java高阶函数">
+                <i class="fa fa-chevron-left"></i> Java高阶函数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/02/深入理解Java虚拟机之自动内存管理机制/" rel="prev" title="深入Java虚拟机之自动内存管理机制">
+                深入Java虚拟机之自动内存管理机制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/30/SpringDataAccess读书笔记/"
+           data-title="SpringDataAccess读书笔记" data-url="http://yoursite.com/2016/10/30/SpringDataAccess读书笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/xiaomei.png"
+               alt="ShadowC" />
+          <p class="site-author-name" itemprop="name">ShadowC</p>
+          <p class="site-description motion-element" itemprop="description">学而不思则罔，思而不学则殆。读书是学的过程，写博客是思的过程。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring’s-JDBCTemplate"><span class="nav-number">1.</span> <span class="nav-text">Spring’s JDBCTemplate</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JdbcTemplate的初始化需要使用datasource"><span class="nav-number">1.1.</span> <span class="nav-text">1. JdbcTemplate的初始化需要使用datasource.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-配置JdbcTemplate"><span class="nav-number">1.2.</span> <span class="nav-text">2. 配置JdbcTemplate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-使用JdbcTemplate"><span class="nav-number">1.3.</span> <span class="nav-text">3. 使用JdbcTemplate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-queryForObject-queryForList-queryForMap"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. queryForObject, queryForList,queryForMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-绑定查询条件中的变量"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 绑定查询条件中的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-RowMapper-将查询结果映射为Java本地对象"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. RowMapper(将查询结果映射为Java本地对象)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-插入-删除-更新"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. 插入,删除,更新</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-NamedParameterJdbcTemplate"><span class="nav-number">1.4.</span> <span class="nav-text">4.NamedParameterJdbcTemplate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Jdbc-Batching"><span class="nav-number">1.5.</span> <span class="nav-text">5 Jdbc Batching</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ShadowC</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"shadowc"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
