@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mysql,phpmyadmin," />
 
 
 
@@ -57,22 +57,46 @@
 
 
 
-<meta name="description" content="版权声明：本文为博主原创文章，未经博主允许不得转载。如有错误，欢迎指正。
+<meta name="description" content="首先下载mysql和phpmyadmin镜像
+docker pull phpmyadmin/phpmyadmin
+docker pull mysql
 
-这题和前面的1.16很类似，我们来先用下我的1.16第一个方法来试一下。思路就是对a,b两个数进行映射，a → a*2 ,b → b/2,这和1.16的b → b^2, n → n/2很类似吧，如果是奇数的话只需要进行如下映射a×b=a+a×（b-1）),上代码！！！">
+
+启动mysql容器
+docker run –name mysql1 -e MYSQL_ROOT_PASSWORD=mysqlpw -d mysql:latest
+
+
+启动phpmyadmin容器
+docker run –name myadmin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SICP 练习 1.17">
-<meta property="og:url" content="http://yoursite.com/2016/01/21/sicp-exercise-1.17/index.html">
+<meta property="og:title" content="phpmyadmin容器连接mysql容器">
+<meta property="og:url" content="http://yoursite.com/2017/01/26/phpmyadmin容器连接mysql容器/index.html">
 <meta property="og:site_name" content="ShadowC">
-<meta property="og:description" content="版权声明：本文为博主原创文章，未经博主允许不得转载。如有错误，欢迎指正。
+<meta property="og:description" content="首先下载mysql和phpmyadmin镜像
+docker pull phpmyadmin/phpmyadmin
+docker pull mysql
 
-这题和前面的1.16很类似，我们来先用下我的1.16第一个方法来试一下。思路就是对a,b两个数进行映射，a → a*2 ,b → b/2,这和1.16的b → b^2, n → n/2很类似吧，如果是奇数的话只需要进行如下映射a×b=a+a×（b-1）),上代码！！！">
-<meta property="og:updated_time" content="2016-01-27T12:05:41.000Z">
+
+启动mysql容器
+docker run –name mysql1 -e MYSQL_ROOT_PASSWORD=mysqlpw -d mysql:latest
+
+
+启动phpmyadmin容器
+docker run –name myadmin">
+<meta property="og:updated_time" content="2017-01-26T14:25:07.948Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SICP 练习 1.17">
-<meta name="twitter:description" content="版权声明：本文为博主原创文章，未经博主允许不得转载。如有错误，欢迎指正。
+<meta name="twitter:title" content="phpmyadmin容器连接mysql容器">
+<meta name="twitter:description" content="首先下载mysql和phpmyadmin镜像
+docker pull phpmyadmin/phpmyadmin
+docker pull mysql
 
-这题和前面的1.16很类似，我们来先用下我的1.16第一个方法来试一下。思路就是对a,b两个数进行映射，a → a*2 ,b → b/2,这和1.16的b → b^2, n → n/2很类似吧，如果是奇数的话只需要进行如下映射a×b=a+a×（b-1）),上代码！！！">
+
+启动mysql容器
+docker run –name mysql1 -e MYSQL_ROOT_PASSWORD=mysqlpw -d mysql:latest
+
+
+启动phpmyadmin容器
+docker run –name myadmin">
 
 
 
@@ -90,7 +114,7 @@
   };
 </script>
 
-  <title> SICP 练习 1.17 | ShadowC </title>
+  <title> phpmyadmin容器连接mysql容器 | ShadowC </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -229,7 +253,7 @@
             
             
               
-                SICP 练习 1.17
+                phpmyadmin容器连接mysql容器
               
             
           </h1>
@@ -241,8 +265,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-21T21:00:00+08:00" content="2016-01-21">
-              2016-01-21
+            <time itemprop="dateCreated" datetime="2017-01-26T15:00:00+08:00" content="2017-01-26">
+              2017-01-26
             </time>
           </span>
 
@@ -255,8 +279,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/SICP/" itemprop="url" rel="index">
-                    <span itemprop="name">SICP</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -271,8 +295,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/21/sicp-exercise-1.17/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/21/sicp-exercise-1.17/" itemprop="commentsCount"></span>
+                <a href="/2017/01/26/phpmyadmin容器连接mysql容器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/26/phpmyadmin容器连接mysql容器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -293,35 +317,49 @@
       
 
       
-        <blockquote>
-<p>版权声明：本文为博主原创文章，未经博主允许不得转载。如有错误，欢迎指正。</p>
-</blockquote>
-<p>这题和前面的1.16很类似，我们来先用下我的1.16第一个方法来试一下。思路就是对a,b两个数进行映射，a → a*2 ,b → b/2,这和1.16的b → b^2, n → n/2很类似吧，如果是奇数的话只需要进行如下映射a×b=a+a×（b-1）),上代码！！！<br><a id="more"></a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cc</span><span class="params">(<span class="variable">$a</span>,<span class="variable">$b</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$b</span>==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$a</span>;</span><br><span class="line">    &#125;<span class="keyword">elseif</span>(<span class="variable">$b</span>%<span class="number">2</span>!==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$a</span>+cc(<span class="variable">$a</span>,<span class="variable">$b</span>-<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cc(double1(<span class="variable">$a</span>),halve(<span class="variable">$b</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double1</span><span class="params">(<span class="variable">$i</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*<span class="variable">$i</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">halve</span><span class="params">(<span class="variable">$i</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$i</span>/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>再看看scheme版本<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(define (mult a b)</span><br><span class="line">  (cond ((= b 1) a)</span><br><span class="line">        ((odd? b) (+ a (mult a (- b 1))))</span><br><span class="line">        (else (mult (double a) (halve b)))</span><br><span class="line">        )</span><br><span class="line">  )</span><br><span class="line">(define (double n)</span><br><span class="line">  (+ n n))</span><br><span class="line">(define (halve n)</span><br><span class="line">  (/ n 2))</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<p>但这并不是纯迭代版本，和上题一样，我的方法在状态改变时（b为奇数），则为递归计算过程，现在让我们看下迭代版本。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(define (double n)</span><br><span class="line">  (+ n n))</span><br><span class="line">(define (halve n)</span><br><span class="line">  (/ n 2))</span><br><span class="line">)</span><br><span class="line">(define (cc a b x)</span><br><span class="line">  (cond ((= b 1) (+ a x))</span><br><span class="line">        ((odd? b) (cc a (- b 1) (+ a x)))</span><br><span class="line">        (else (cc (double a) (halve b) x)) )))</span><br></pre></td></tr></table></figure></p>
-<p>很简单，只需要加一个变量x，使得a×b+x在整个变换过程中保持相等即可。</p>
+        <ol>
+<li>首先下载mysql和phpmyadmin镜像<ul>
+<li>docker pull phpmyadmin/phpmyadmin</li>
+<li>docker pull mysql</li>
+</ul>
+</li>
+<li>启动mysql容器<ul>
+<li>docker run –name mysql1 -e MYSQL_ROOT_PASSWORD=mysqlpw -d mysql:latest</li>
+</ul>
+</li>
+<li>启动phpmyadmin容器<ul>
+<li>docker run –name myadmin -d –link mysql1 -p 8000:80 -e PMA_HOST=mysql1 phpmyadmin/phpmyadmin</li>
+<li>注意PMA_HOST变量需要设置为mysql容器的名字(被坑了整整一晚上)…</li>
+</ul>
+</li>
+<li>打开浏览器进入<a href="http://localhost:8000" target="_blank" rel="external">http://localhost:8000</a></li>
+</ol>
 
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag">#mysql</a>
+          
+            <a href="/tags/phpmyadmin/" rel="tag">#phpmyadmin</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/19/sicp-exercise-1.16/" rel="next" title="SICP 练习 1.16">
-                <i class="fa fa-chevron-left"></i> SICP 练习 1.16
+              <a href="/2017/01/02/深入理解Java虚拟机之自动内存管理机制/" rel="next" title="深入Java虚拟机之自动内存管理机制">
+                <i class="fa fa-chevron-left"></i> 深入Java虚拟机之自动内存管理机制
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/27/sicp-1.2.6/" rel="prev" title="素数检测-费马小定理-取模函数">
-                素数检测-费马小定理-取模函数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -347,8 +385,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/21/sicp-exercise-1.17/"
-           data-title="SICP 练习 1.17" data-url="http://yoursite.com/2016/01/21/sicp-exercise-1.17/">
+      <div class="ds-thread" data-thread-key="2017/01/26/phpmyadmin容器连接mysql容器/"
+           data-title="phpmyadmin容器连接mysql容器" data-url="http://yoursite.com/2017/01/26/phpmyadmin容器连接mysql容器/">
       </div>
     
   </div>
