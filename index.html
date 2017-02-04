@@ -208,6 +208,127 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/04/2017.2.4/" itemprop="url">
+                  TestNG测试不更新数据库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-04T21:00:00+08:00" content="2017-02-04">
+              2017-02-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/04/2017.2.4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/04/2017.2.4/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在看精通Spring4.x一书,在2.4.3节单元测试这一节,书中演示了使用TestNG对UserServie的单元测试.<br>第三个测试方法testAddLoginLog(),测试了添加t_login_log数据的过程.书中说明这个方法执行后可以在此表中添加一条登陆记录,然而并没有!!!<br>查了很长时间,代码应该没问题,使用网页实测会有登陆记录.原来是TestNG在进行数据插入时会进行数据回滚,从而不影响数据库的内容.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddLoginLog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	User user = userService.findUserByUserName(<span class="string">"admin"</span>);</span><br><span class="line">   	user.setUserId(<span class="number">1</span>);</span><br><span class="line">	user.setUserName(<span class="string">"admin"</span>);</span><br><span class="line">	user.setLastIp(<span class="string">"192.168.12.7"</span>);</span><br><span class="line">	user.setLastVisit(<span class="keyword">new</span> Date());</span><br><span class="line">	userService.loginSuccess(user);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果希望关闭回滚操作可以使用@Rollback声明<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Test</span></span><br><span class="line"><span class="annotation">@Rollback</span>(<span class="keyword">false</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddLoginLog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	User user = userService.findUserByUserName(<span class="string">"admin"</span>);</span><br><span class="line">   	user.setUserId(<span class="number">1</span>);</span><br><span class="line">	user.setUserName(<span class="string">"admin"</span>);</span><br><span class="line">	user.setLastIp(<span class="string">"192.168.12.7"</span>);</span><br><span class="line">	user.setLastVisit(<span class="keyword">new</span> Date());</span><br><span class="line">	userService.loginSuccess(user);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然一般情况下并不需要关闭它,毕竟我们并不希望测试方法老是往数据库添加无用数据.</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1263,123 +1384,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/27/sicp-1.2.6/" itemprop="url">
-                  素数检测-费马小定理-取模函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-27T21:00:00+08:00" content="2016-01-27">
-              2016-01-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/SICP/" itemprop="url" rel="index">
-                    <span itemprop="name">SICP</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/27/sicp-1.2.6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/27/sicp-1.2.6/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创文章，未经博主允许不得转载。如有错误，欢迎指正。</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>费马小定理：如果 n 是一个素数，a 是小于 n 的任意正整数，那么 a 的 n 次方与 a 模 n 同余。（两个数称为是模 n 的同余，如果它们除以 n 的余数相同。数 a 除以 n 的余数称为 a 取模 n 的余数，或简称为 a 取模 n）。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/27/sicp-1.2.6/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1426,7 +1430,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1440,7 +1444,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
